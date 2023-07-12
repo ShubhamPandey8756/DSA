@@ -1,0 +1,35 @@
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &arr, int n)
+{
+    //  Write your code here.
+//handel edge case
+
+    // ist lets find the break point ok...so for finding the break point we have to iterate from the n-2 till we come across the i=0
+   int ind=-1;
+    for(int i=n-2;i>=0;i--){
+        if(arr[i]<arr[i+1])
+        {
+            ind=i;
+            break;
+        }
+    }
+    //handel edge case
+     if(ind==-1)
+     {
+         reverse(arr.begin(),arr.end());
+     return arr;
+     }
+
+    //not step -3 is to find the next element to the break ind which is slightly greater than the ind
+    for(int i=n-1;i>=ind;i--)
+    {
+        if(arr[i]>arr[ind])
+        {
+            swap(arr[i],arr[ind]);
+            break;
+        }
+    }
+    reverse(arr.begin()+ind+1,arr.end());
+    return arr;
+
+}
